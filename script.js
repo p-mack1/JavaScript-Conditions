@@ -38,7 +38,25 @@ runBtn.addEventListener("click", function() {
                 message = "Read the handwritten clue.";
                 break;
                 default:
-                    message = "uknown evidence type.";
+                    message = "unknown evidence type.";
     }
     result.textContent = message;
+});
+
+let hasKey = true;
+let doorLocked = true;
+
+runBtn.addEventListener("click", function () {
+    const canOpen = hasKey === true; 
+    result.textContent = "Can open: " + canOpen;
+    console.log("Door locked?", doorLocked);
+});
+
+let hasCode = false;
+
+runBtn.addEventListener("click", function () {
+    const canEnter = (hasKey || hasCode) && doorLocked;
+    result.textContent = canEnter
+    ? "You can unlock the door."
+    : "You cannot unlock the door.";
 });
